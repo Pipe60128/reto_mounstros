@@ -1,12 +1,12 @@
 #ifndef EXPLORACION_H
 #define EXPLORACION_H
-#include "Casilla.h"
+#include "Node.h"
 
 
 template<typename T>
 class Exploracion{
     private:
-        Casilla<T>* head;
+        Node<T>* head;
         unsigned int n;
     public:
         Exploracion();
@@ -14,12 +14,13 @@ class Exploracion{
         unsigned int size() const;
         bool empty() const; 
         void clear();
-        void pushFront(const T& value, const T& nombre, int probmounstro);
-        void pushBack(const T& value, const T& nombre, int probmounstro);
-        bool insert(unsigned int index, const T& value, const T& nombre, int probmounstro);
-        bool remove( const T& value);
+        void pushFront(const T& value);
+        void pushBack(const T& value);
+        bool insert(unsigned int index,const T& value);
         T* elementAt(unsigned int index);
-        void print();
+        void print() const;
+        Node<T>* getHead() const;
+        Node<T>* search(const T& value);
 
 
 };

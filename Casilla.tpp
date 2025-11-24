@@ -7,11 +7,11 @@
 using namespace std;
 
 template <typename T>
-Casilla<T> :: Casilla(const T& v, const T& nombre, int probmounstro)
-    : idCasilla(0), nombreCasilla(nombre), data(v), next(nullptr), probmounstro(probmounstro) {}
+Casilla<T> :: Casilla(int id, const T& nombre, int probmounstro)
+    : idCasilla(id), nombreCasilla(nombre), probmounstro(probmounstro) {}
 
 template <typename T>
-int Casilla<T> :: hasMonster() const{
+int Casilla<T> :: hasMonster() {
     srand(time(nullptr));
     int random = rand() % 100;
     int probabilidad = probmounstro ;
@@ -20,6 +20,19 @@ int Casilla<T> :: hasMonster() const{
     } else {
         return 0; // No aparece un monstruo
     }
+}
+
+template <typename T>
+int Casilla<T> :: getId() const{
+    return idCasilla;
+}
+template <typename T>
+T Casilla<T> :: getNombre() const{
+    return nombreCasilla;
+}
+template <typename T>
+int Casilla<T> :: getProbMonstruo() const{
+    return probmounstro;
 }
 
 

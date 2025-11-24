@@ -10,7 +10,6 @@ Exploracion<T> :: Exploracion(): head(nullptr), n(0){}
 template <typename T>
 Exploracion<T> :: ~Exploracion(){
     clear();
-    cout<<"toDO"<<endl;
 }
 
 //check if list is empty
@@ -21,37 +20,36 @@ bool Exploracion<T> :: empty() const {
 
 //print method
 template <typename T>
-void Exploracion<T> :: print() {
-    if (empty()) {
-        cout<< "lista vacia" << endl;
-    } else {
-        const Casilla<T>* current = head;
-        cout<<"[";
+void Exploracion<T> :: print() const {
+        if (empty()) {
+            cout << "[]";
+            return;
+        }
+        Node<T>* current = head;
+        cout<<"|--------------------------"<<endl;
+        cout << "|";
         while (current) {
-            if (current->hasMonster() == 1){
-                cout<<" (MOUNSTRO) ";
-            } else {
-                cout<<" (NO MOUNSTRO) ";
-            }
-            cout<<"  "<<current->nombreCasilla<<" ==== "<<current->data<<"\n ==->";
+            cout << " " << current->data;
+            if (current->next) cout << "\n|";
             current = current->next;
         }
-        cout<<"]"<<endl;
-    }
+        cout << " ";
 }
+
+
 
 //pushFront
 template <typename T>
-void Exploracion<T> :: pushBack(const T& value, const T& nombre, int probmounstro){
-    Casilla<T>* newCasilla = new Casilla<T>(value, nombre, probmounstro);
+void Exploracion<T> :: pushBack(const T& value){
+    Node<T>* newNode = new Node<T>(value);
     if (!head) {
-        head = newCasilla;
+        head = newNode;
     } else {
-        Casilla<T>* current = head;
+        Node<T>* current = head;
         while (current->next) {
             current = current-> next;
         }
-        current->next = newCasilla;
+        current->next = newNode;
     }
     ++n;
 
@@ -61,69 +59,45 @@ void Exploracion<T> :: pushBack(const T& value, const T& nombre, int probmounstr
 
 //pushBack method
 template <typename T>
-void Exploracion<T> :: pushFront(const T& value, const T& nombre, int probmounstro ){
-    Casilla<T>* newCasilla = new Casilla<T>(value, nombre, probmounstro);
+void Exploracion<T> :: pushFront(const T& value){
+    Node<T>* newNode = new Node<T>(value);
     if (!head) {
-        head = newCasilla;
+        head = newNode;
     } else {
-        newCasilla->next = head;
-        head = newCasilla;
+        newNode->next = head;
+        head = newNode;
     }
     ++n;
 
 }
  //inset method
 template <typename T>
-bool Exploracion<T> :: insert(unsigned int index, const T& value, const T& nombre, int probmounstro){
+bool Exploracion<T> :: insert(unsigned int index, const T& value){
     if (index > n) return false;
     if (index == 0) {
-        pushFront(value, nombre, probmounstro);
+        pushFront(value);
         return true;
     }
-    Casilla<T>* current = head;
+    Node<T>* current = head;
     for (unsigned int i = 0; i < index-1 && current; ++i){
         current = current->next;
     }
     if (!current) return false;
-    Casilla<T>* newCasilla = new Casilla<T>(value, nombre, probmounstro);
-    newCasilla->next = current->next;
-    current->next = newCasilla;
+    Node<T>* newNode = new Node<T>(value);
+    newNode->next = current->next;
+    current->next = newNode;
     ++n;
     return true;
 
 }
-//remove method 
-template <typename T>
-bool Exploracion<T>::remove(const T& value) {
-    if (empty()) return false;
-    Casilla<T>* current = head;
-    Casilla<T>* previous = nullptr;
 
-    while (current) {
-        if (current->data == value) {
-            if (previous!= nullptr) {
-                previous->next = current->next;
-            } else {
-                head = current->next;
-            }
-            delete current;
-            --n;
-            cout<<"first element with value "<< value<<" removed"<<endl;
-            return true;
-        }
-        previous = current;
-        current = current->next;
-    }
-
-    return false;
-}
 
 //clear method
 template <typename T>
 void Exploracion<T> :: clear(){
-    Casilla<T>* current = head;
+    Node<T>* current = head;
     while (current){
-        Casilla<T>* next = current->next;
+        Node<T>* next = current->next;
         delete current;
         current = next;
         --n;
@@ -134,25 +108,33 @@ void Exploracion<T> :: clear(){
 //size method
 template <typename T> 
 unsigned int Exploracion<T> :: size() const{
-    unsigned int nSize = 0;
-    Casilla<T>* current = head;
+    /*unsigned int nSize = 0;
+    Node<T>* current = head;
     while (current) {
         ++nSize;
         current = current -> next;
-    }
-    return nSize;
+    }*/
+    return n;
 
 }
 
+
+//gethead method
 template <typename T>
-T* Exploracion<T> :: elementAt( unsigned int index){
-    if (empty()) return nullptr;
-    Casilla<T>* current = head;
-    unsigned int i = 0;
-    while (current && i < index){
-        current = current->next;
-        ++i;
+Node<T>* Exploracion<T> :: getHead() const{
+    return head;
+}
+
+//search method
+template <typename T>
+Node<T>* Exploracion<T> :: search(const T& value) {
+    Node<T>* current = head;
+    while(current) {
+        if (current->data == value){
+            return current;
+        } else {
+            current = current->next;
+        } 
     }
-    if (!current) return nullptr;
-    return &(current->data);
+    return nullptr;
 }

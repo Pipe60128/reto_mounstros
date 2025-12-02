@@ -26,12 +26,14 @@ void Exploracion<T> :: print() const {
             return;
         }
         Node<T>* current = head;
-        cout<<"|--------------------------"<<endl;
+        cout<<"|---------------------------------|"<<endl;
         cout << "|";
+        int opcion = 1;
         while (current) {
-            cout << " " << current->data;
+            cout<< "  " <<opcion <<")"<< current->data;
             if (current->next) cout << "\n|";
             current = current->next;
+            opcion++;
         }
         cout << " ";
 }

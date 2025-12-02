@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include "Casilla.h"
 using namespace std;
 
 template <typename T>
@@ -11,9 +12,9 @@ private:
 public:
     Edge(const T& dest, int w) : destino(dest), peso(w) {}
     
-    T getDestino() const { return destino; }
-    int getPeso() const { return peso; }
-    void setPeso(int w) { peso = w; }
+    T getDestino() const;
+    int getPeso() const;
+    void setPeso(int w);
     
     bool operator==(const Edge<T>& other) const {
         return destino == other.destino;
@@ -24,4 +25,4 @@ public:
         return out;
     }
 };
-#include "Edge.h"
+#include "Edge.tpp"

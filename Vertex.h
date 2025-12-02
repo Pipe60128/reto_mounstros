@@ -8,7 +8,7 @@ template<typename T>
 class Vertex {
 private:
     Casilla<T> casilla;                    // Datos de la casilla simulando T data;
-    Exploracion<Casilla<T>> adj;    // Lista de casillas adyacentes
+    Exploracion<Edge<Casilla<T>>> adj;    // Lista de casillas adyacentes
     bool visitado;
     
 public:
@@ -28,8 +28,9 @@ public:
     Casilla<T> getCasilla() const;
     bool isVisitado() const;
     void setVisitado(bool v);
+    int getId();
 
-    Exploracion<Casilla<T>>& getAdj();
+    Exploracion<Edge<Casilla<T>>>& getAdj();
     
 };
 

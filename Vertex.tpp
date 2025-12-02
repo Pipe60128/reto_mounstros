@@ -14,6 +14,11 @@ void Vertex<T> :: setVisitado(bool v) {
     visitado = v;
  }
 template <typename T>
-Exploracion<Casilla<T>>& Vertex<T> :: getAdj() { 
+Exploracion<Edge<Casilla<T>>>& Vertex<T> :: getAdj() { 
     return adj;
+ }
+
+ template <typename T>
+ int Vertex<T> ::getId() {
+    return casilla.getId();
  }

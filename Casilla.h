@@ -14,7 +14,7 @@ class Casilla{
             return idCasilla == other.idCasilla;
         }
         friend ostream& operator<<(ostream& out, const Casilla<T>& c) {
-            out << "      ‸‸" << c.nombreCasilla << "‸‸";
+            out << "      ‸‸" << c.nombreCasilla << "‸";
         return out;
         }
         Casilla(int id, const T& nombre, int probmounstro); 

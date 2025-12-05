@@ -1,0 +1,5 @@
+4
+1 Pipe 40 40 7 20 4
+2 Pinguinin 40 40 10 8 3
+3 Duffed 15 15 30 5 5
+4 Chicharo 100 100 400 500 50

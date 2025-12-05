@@ -3,44 +3,54 @@
 #include <fstream>
 #include <string>
 using namespace std;
+
 const int MAX_MONSTRUOS = 100;
 
-class Monstruo {
+class Monster {
 private:
     int id;
-    string nombre;
-    int vida;
-    int ataque;
-    int defensa;
-    double probabilidad;
-    //lista y maximo de mounstruos
-   
-    
+    string name;
+    int hp;
+    int hpMax;
+    int atk;
+    int def;
+    int probabilidad;
+
 public:
     // Constructor por defecto
-    Monstruo() : id(0), vida(0), ataque(0), defensa(0), probabilidad(0.0) {
-        nombre = "";
-    }
+    Monster() : id(0), name(""), hp(0), hpMax(0), atk(0), def(0), probabilidad(0.0) {}
+    Monster(int i, string n, int h, int hMx, int a, int df, int prob)
+        : id(i), name(n), hp(h), hpMax(hMx), atk(a), def(df), probabilidad(prob) {}
+
+    ~Monster() = default;
     
-    // Cargar un monstruo desde el archivo
-   bool cargarDesdeArchivo(ifstream& file);
-    
-    // Funciones globales de carga
-    static int cargarTodos(const string& archivo, Monstruo monstruos[], int& total);
+int   getId() const { 
+    return id; 
+}
+string   getName() const {
+    return name;
+ }
+int   getHp() const { 
+    return hp;
+ }
+int   getHpMax() const {
+    return hpMax; 
+}
+int  getAtk() const {
+    return atk; 
+}
+int   getDef() const {
+    return def; 
+}
+double    getProb() const {
+    return probabilidad;
+}
+
+void   setHp(int v) { 
+    hp = v; 
+}   
 
     
-    // Getters
-    int getId() const;
-    string getNombre() const;
-    int getVida() const;
-    int getAtaque() const;
-    int getDefensa() const;
-    double getProbabilidad() const;
+};
 
-    // Mostrar atributos completos
-    void mostrar() const;
-    void mostrarTodos() const;
-    int cargarDesdeArchivo(const string& archivo);
 
-    
-    };

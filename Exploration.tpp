@@ -1,32 +1,32 @@
 #pragma once 
 using namespace std;
-#include "Exploracion.h"
+#include "Exploration.h"
 
-//constructor
+// Constructor
 template <typename T>
-Exploracion<T> :: Exploracion(): head(nullptr), n(0){}
+Exploration<T> :: Exploration(): head(nullptr), n(0){}
 
-//destructor
+// Destructor
 template <typename T>
-Exploracion<T> :: ~Exploracion(){
+Exploration<T> :: ~Exploration(){
     clear();
 }
 
-//check if list is empty
+// Checa si la lista esta vacia
 template <typename T>
-bool Exploracion<T> :: empty() const {
+bool Exploration<T> :: empty() const {
     return n==0 || !head;
 }
 
-//print method
+// Imprime la Linked List
 template <typename T>
-void Exploracion<T> :: print() const {
+void Exploration<T> :: print() const {
         if (empty()) {
             cout << "[]";
             return;
         }
         Node<T>* current = head;
-        cout<<"|---------------------------------|"<<endl;
+        cout<<"|--------------------------------------------------------|"<<endl;
         cout << "|";
         int opcion = 1;
         while (current) {
@@ -40,9 +40,9 @@ void Exploracion<T> :: print() const {
 
 
 
-//pushFront
+// Metodo pushBack
 template <typename T>
-void Exploracion<T> :: pushBack(const T& value){
+void Exploration<T> :: pushBack(const T& value){
     Node<T>* newNode = new Node<T>(value);
     if (!head) {
         head = newNode;
@@ -59,9 +59,9 @@ void Exploracion<T> :: pushBack(const T& value){
     
 }
 
-//pushBack method
+// Metodo pushFront
 template <typename T>
-void Exploracion<T> :: pushFront(const T& value){
+void Exploration<T> :: pushFront(const T& value){
     Node<T>* newNode = new Node<T>(value);
     if (!head) {
         head = newNode;
@@ -72,9 +72,9 @@ void Exploracion<T> :: pushFront(const T& value){
     ++n;
 
 }
- //inset method
+ // Metodo insert
 template <typename T>
-bool Exploracion<T> :: insert(unsigned int index, const T& value){
+bool Exploration<T> :: insert(unsigned int index, const T& value){
     if (index > n) return false;
     if (index == 0) {
         pushFront(value);
@@ -94,9 +94,9 @@ bool Exploracion<T> :: insert(unsigned int index, const T& value){
 }
 
 
-//clear method
+// Metodo clear
 template <typename T>
-void Exploracion<T> :: clear(){
+void Exploration<T> :: clear(){
     Node<T>* current = head;
     while (current){
         Node<T>* next = current->next;
@@ -107,29 +107,22 @@ void Exploracion<T> :: clear(){
     head = nullptr;
 }
 
-//size method
+// Metodo size
 template <typename T> 
-unsigned int Exploracion<T> :: size() const{
-    /*unsigned int nSize = 0;
-    Node<T>* current = head;
-    while (current) {
-        ++nSize;
-        current = current -> next;
-    }*/
+unsigned int Exploration<T> :: size() const{
     return n;
-
 }
 
 
-//gethead method
+// Metodo getHead
 template <typename T>
-Node<T>* Exploracion<T> :: getHead() const{
+Node<T>* Exploration<T> :: getHead() const{
     return head;
 }
 
-//search method
+// Metodo search
 template <typename T>
-Node<T>* Exploracion<T> :: search(const T& value) {
+Node<T>* Exploration<T> :: search(const T& value) {
     Node<T>* current = head;
     while(current) {
         if (current->data == value){

@@ -150,7 +150,7 @@ Hero Grafo<T>::chooseHero() {
     Hero heroes[100];
     int numHeroes = 0;
     cargarHeroesDesdeArchivo("heroes.txt", heroes, numHeroes);
-        cout << "== Aqui esta el almanaque de heroes esocje el que mas te guste: =="<<endl;
+        cout << "== Aqui esta el almanaque de heroes. ==\n== Escoje el que mas te guste: ==\n"<<endl;
         for (int i = 0; i < numHeroes; ++i) {
             cout<<i+1<< ". " <<heroes[i].getName()<< " (HP: " << heroes[i].getHp()<< ", ATK: " << heroes[i].getAtk()<< ", DEF: " << heroes[i].getDef()<< ", Pociones: " << heroes[i].getPotions() << ")"<<endl;
         }

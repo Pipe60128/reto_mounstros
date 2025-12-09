@@ -27,5 +27,6 @@ class Box{
         T getName() const; // Getter para el nombre de la casilla
         int getProbMonstruo() const; // Getter para la probabilidad de monstruo
         int hasMonster(); // Método para determinar si hay un monstruo en la casilla
+        void setProb(int p); // Setter para la probabilidad de monstruo
     };
 #include "Box.tpp"

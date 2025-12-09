@@ -6,10 +6,10 @@
 4 Pasillo_Secundario1 5
 5 Sala_de_descanso 0
 6 Almacen 5
-7 Sala_del_cofre 40
+7 Sala_del_cofre 70
 8 Esquina_tenebrosa 7
 9 Pasillo_Relfexivo 0
-10 Sala_1 70
+10 Sala_1 80
 11 Sala_2 0
 12 Sala_3 10
 13 Sala_de_armeria 20

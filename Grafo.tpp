@@ -346,6 +346,7 @@ bool Grafo<T>:: setVisited(Box<T>& actual){
     Node<Vertex<T>>* current = findVertexNode(actual);
     if (current == nullptr) return false;
     current->data.setVisitado(true);
+    
     return true;
 }
 
@@ -475,7 +476,7 @@ void Grafo<T>::IinitGame() {
     int num = 0;
 
     //cheat code
-    string key = "estructuradeatos2025";
+    string key = "TQMMARLON";
     string inputKey;
     cout<<"Ingresa tu numbre : ";
     cin>>inputKey;
@@ -513,6 +514,7 @@ void Grafo<T>::IinitGame() {
     // Marcar la casilla inicial como visitada
     Box<string> casilla0 = casillas[0];
     mapa.setVisited(casilla0);
+    casillas[0].setProb(0);
 
     // Bucle principal del juego
     while (vida > 2 && num < numCasillas){ 
@@ -522,17 +524,19 @@ void Grafo<T>::IinitGame() {
         if (siguiente.hasMonster() == 1){
             Monster m = chooseMonster(siguiente);
             bool mounsterdead = mapa.game(h,m);
+            if(!mapa.isVisited(siguiente)){
+                mapa.setVisited(siguiente);
+                casillas[num].setProb(0);  
+            }
 
             if (mounsterdead != false) {
                 if (siguiente == casillas[numCasillas - 1]) {
-                    cout<<"\n.\n..\n...\n....Felicidades ganaste\n terminaste el juego\n....\n...\n..\n. "<<endl;
+                    cout<<"\n   .\n  ..\n ...\n....\nFelicidades ganaste\n terminaste el juego\n....\n ...\n  ..\n   . "<<endl;
                     break;
-                }
-                if (siguiente.getId() == 7) {
+                } else if (siguiente.getId() == 7) {
                     cout<<"¡Has encontrado el tesoro legendario! +50 XP"<<endl;
                     h.addXp(50);
-                }
-                if (siguiente.getId() == 13) {
+                } else if (siguiente.getId() == 7) {
                     cout<<"\n¡Has llegado a la sala de armeria ten un upgrade\n"<<endl;
                     h.setAtk(h.getAtk() + 5);
                     h.heal(20);
@@ -570,6 +574,19 @@ void Grafo<T>::IinitGame() {
                 break;
             }
         } else {
+            if (siguiente == casillas[numCasillas - 1]) {
+                    cout<<"\n.\n..\n...\n....Felicidades ganaste\n terminaste el juego\n....\n...\n..\n. "<<endl;
+                    break;
+                } else if (siguiente.getId() == 7 && !mapa.isVisited(siguiente)) {
+                    cout<<"¡Has encontrado el tesoro legendario! +50 XP"<<endl;
+                    h.addXp(50);
+                } else if (siguiente.getId() == 13 && !mapa.isVisited(siguiente)) {
+                    cout<<"\n¡Has llegado a la sala de armeria ten un upgrade\n"<<endl;
+                    h.setAtk(h.getAtk() + 5);
+                    h.heal(20);
+                    cout<<"\n +5 de ataque"<<endl;
+                    cout<<"\n +20 de vida"<<endl;
+                }
             // No hay monstruo, elegir siguiente casilla
             Box<string>* sig = mapa.elegirCasilla(casillas[num], h);
             for (int i = 0; i < numCasillas; i++){
@@ -629,6 +646,7 @@ bool Grafo<T>:: game(Hero& h, Monster& m) {
 
         if (opcion == 1) {
             int danio = h.getAtk() - m.getDef();
+            if (danio < 1) danio = 1; 
             m.setHp(m.getHp() - danio);
 
             cout << ">> Atacas a " << m.getName()<< " y le haces " << danio << " de daño." << endl;

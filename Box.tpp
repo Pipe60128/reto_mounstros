@@ -36,4 +36,8 @@ int Box<T> :: getProbMonstruo() const{ // Getter para la probabilidad de monstru
     return probmounstro;
 }
 
+template <typename T>
+void Box<T> :: setProb(int p) { // Setter para la probabilidad de monstruo
+    probmounstro = p;
+}
 

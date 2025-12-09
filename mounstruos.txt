@@ -1,6 +1,6 @@
 5
-1 Araña 50 50 5 2 5
-2 Zombie 100 100 1 2 10
-3 Creeper 50 50 40 2 40
-4 Warden 75 75 20 15 70 
+1 Araña 10 10 5 2 5
+2 Zombie 25 25 1 2 10
+3 Creeper 40 40 9 2 70
+4 Warden 75 75 20 15 80 
 5 Ender_Dragon 100 100 25 15 90
